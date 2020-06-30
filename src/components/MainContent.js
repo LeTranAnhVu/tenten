@@ -1,15 +1,18 @@
 import React from "react";
 import "./MainContent.scss";
-import {Container} from "reactstrap";
-import SearchInput from "./SearchInput";
-import RestaurantList from "./RestaurantList";
+import {Route, Switch} from "react-router-dom";
+import {Redirect} from 'react-router'
+import RestaurantsPage from "../pages/RestaurantsPage";
+import RestaurantDetailPage from "../pages/RestaurantDetailPage";
+
 const MainContent = () => {
     return (
         <section className="main-content">
-            <Container>
-                <SearchInput/>
-                <RestaurantList/>
-            </Container>
+            <Switch>
+                <Route path="/restaurants/:id" component={RestaurantDetailPage}/>
+                <Route path="/restaurants" component={RestaurantsPage}/>
+                <Redirect exact from="/" to="/restaurants"/>
+            </Switch>
         </section>
 
     );
